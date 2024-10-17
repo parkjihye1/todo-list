@@ -31,8 +31,7 @@ export default function UI() {
       <h1 className="text-xl">TODO LIST</h1>
 
       <Input
-        label="Search TODO"
-        placeholder="Search TODO"
+        label="기록한 일들을 검색하세요!"
         icon={<i className="fas fa-search" />}
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
@@ -46,7 +45,7 @@ export default function UI() {
         loading={createTodoMutation.isPending}
       >
         <i className="fas fa-plus mr-2" />
-        ADD TODO
+        TODO 추가
       </Button>
     </div>
   );
