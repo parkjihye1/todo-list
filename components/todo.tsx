@@ -20,7 +20,7 @@ export default function Todo({ todo }) {
       }),
     onSuccess: () => {
       setIsEditing(false);
-      queryClient.invalidateQueries({
+      queryClient.invalidateQueries({   
         queryKey: ["todos"],
       });
     },
