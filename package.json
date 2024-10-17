@@ -2,12 +2,14 @@
   "name": "todo-list",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://parkjihye1.github.io/todo-list",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "generate-types": "npx supabase gen types typescript --project-id iddfgewnxxitzlnbxlje --schema public > types_db.ts"
+    
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
