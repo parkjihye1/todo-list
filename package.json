@@ -2,7 +2,7 @@
   "name": "todo-list",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://parkjihye1.github.io/todo-list",
+
   "scripts": {
     "dev": "next dev",
     "build": "next build",
