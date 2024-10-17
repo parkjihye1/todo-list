@@ -43,7 +43,11 @@ export default function Todo({ todo }) {
           await setCompleted(e.target.checked);
           await updateTodoMutation.mutate();
         }}
+        crossOrigin=""  // 기본값으로 빈 문자열 추가
+        onPointerEnterCapture={() => {}}  // 빈 함수로 처리
+        onPointerLeaveCapture={() => {}}  // 빈 함수로 처리
       />
+
 
       {isEditing ? (
         <input
@@ -57,24 +61,45 @@ export default function Todo({ todo }) {
 
       {isEditing ? (
         <IconButton
-          onClick={async () => {
-            await updateTodoMutation.mutate();
-          }}
-        >
-          {updateTodoMutation.isPending ? (
-            <Spinner />
-          ) : (
-            <i className="fas fa-check" />
-          )}
-        </IconButton>
+        onClick={async () => {
+          await updateTodoMutation.mutate();
+        }}
+        placeholder="Button placeholder" // 필요 시 추가
+        onPointerEnterCapture={() => console.log("Pointer entered")} // 필요 시 추가
+        onPointerLeaveCapture={() => console.log("Pointer left")} // 필요 시 추가
+      >
+        {updateTodoMutation.isPending ? (
+          <Spinner
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+        />
+        ) : (
+          <i className="fas fa-check" />
+        )}
+      </IconButton>
+      
       ) : (
-        <IconButton onClick={() => setIsEditing(true)}>
+        <IconButton
+          onClick={() => setIsEditing(true)}
+          onPointerEnterCapture={() => {}}  // 빈 함수 추가
+          onPointerLeaveCapture={() => {}}  // 빈 함수 추가
+          placeholder=""  // 기본값 추가
+        >
           <i className="fas fa-pen" />
         </IconButton>
+
       )}
-      <IconButton onClick={() => deleteTodoMutation.mutate()}>
+      <IconButton
+        onClick={() => deleteTodoMutation.mutate()}
+        onPointerEnterCapture={() => {}}  // 빈 함수로 처리
+        onPointerLeaveCapture={() => {}}  // 빈 함수로 처리
+        placeholder=""  // 빈 문자열 추가
+      >
         {deleteTodoMutation.isPending ? (
-          <Spinner />
+          <Spinner
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+        />
         ) : (
           <i className="fas fa-trash" />
         )}

@@ -35,6 +35,9 @@ export default function UI() {
         icon={<i className="fas fa-search" />}
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
+        crossOrigin="anonymous" // 예시로 추가된 속성
+        onPointerEnterCapture={() => {}}
+        onPointerLeaveCapture={() => {}}
       />
 
       {todosQuery.isPending && <p>Loading...</p>}
@@ -43,10 +46,18 @@ export default function UI() {
       <Button
         onClick={() => createTodoMutation.mutate()}
         loading={createTodoMutation.isPending}
+        placeholder="Button placeholder" // 추가
+        onPointerEnterCapture={() => console.log("Pointer entered")} // 추가
+        onPointerLeaveCapture={() => console.log("Pointer left")} // 추가
       >
-        <i className="fas fa-plus mr-2" />
+        {createTodoMutation.isPending ? (
+          <i className="fas fa-spinner fa-spin mr-2" />
+        ) : (
+          <i className="fas fa-plus mr-2" />
+        )}
         TODO 추가
       </Button>
+
     </div>
   );
 }   
