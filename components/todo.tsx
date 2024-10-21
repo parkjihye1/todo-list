@@ -100,7 +100,7 @@ export default function Todo({ todo }) {
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
         />
-        ) : (
+        ) : (   
           <i className="fas fa-trash" />
         )}
       </IconButton>

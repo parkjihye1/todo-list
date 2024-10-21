@@ -13,7 +13,7 @@ function handleError(error) {
   throw new Error(error.message);
 }
 
-export async function getTodos({ searchInput = "" }): Promise<TodoRow[]> {
+export async function getTodos({ searchInput = "" }): Promise<TodoRow[] | null> {
   const supabase = await createServerSupabaseClient();
   const { data, error } = await supabase
     .from("todo")
@@ -27,6 +27,7 @@ export async function getTodos({ searchInput = "" }): Promise<TodoRow[]> {
 
   return data;
 }
+
 
 export async function createTodo(todo: TodoRowInsert) {
   const supabase = await createServerSupabaseClient();
@@ -45,7 +46,11 @@ export async function createTodo(todo: TodoRowInsert) {
 
 export async function updateTodo(todo: TodoRowUpdate) {
   const supabase = await createServerSupabaseClient();
-  console.log(todo);
+
+  // id가 존재하는지 먼저 확인
+  if (typeof todo.id === 'undefined') {
+    throw new Error("Todo ID is undefined. Unable to update.");
+  }
 
   const { data, error } = await supabase
     .from("todo")
@@ -53,7 +58,7 @@ export async function updateTodo(todo: TodoRowUpdate) {
       ...todo,
       updated_at: new Date().toISOString(),
     })
-    .eq("id", todo.id);
+    .eq("id", todo.id); // 이 부분은 이제 undefined가 아님이 보장됨
 
   if (error) {
     handleError(error);
@@ -61,6 +66,7 @@ export async function updateTodo(todo: TodoRowUpdate) {
 
   return data;
 }
+
 
 export async function deleteTodo(id: number) {
   const supabase = await createServerSupabaseClient();
